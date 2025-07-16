@@ -8,6 +8,7 @@ from pygments.lexers import PythonLexer
 from pygments.styles import get_style_by_name
 
 from . import bindings
+from .interpreter import Interpreter
 
 
 class InteractiveShell:
@@ -35,16 +36,14 @@ class InteractiveShell:
     def run(self) -> int:
         print(InteractiveShell.welcome)
 
-        text = ""
+        interpreter = Interpreter()
         while True:
             try:
-                text = self.session.prompt(">>> ")
+                interpreter.read_and_execute(self.session, "pyshell> ", "       > ")
             except KeyboardInterrupt:
                 continue
             except EOFError:
                 break
-            else:
-                print("You entered:", text)
 
         print("GoodBye!")
         return os.EX_OK
