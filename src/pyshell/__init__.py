@@ -1,3 +1,11 @@
+import os
+import sys
+
+from .pyshell.shell import InteractiveShell
+
+
 def main() -> int:
-    print("Hello from pyshell!")
-    return 0
+    if sys.stdin.isatty():
+        return InteractiveShell().run()
+    else:
+        return os.EX_OK
