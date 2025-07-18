@@ -1,15 +1,18 @@
+import weakref
 from code import InteractiveInterpreter
 
 from prompt_toolkit import PromptSession
 
-from .command_manager import CommandManager
+from pyshell.pyshell.command_manager import CommandManager
+from pyshell.pyshell.context import Context
 
 
 class Interpreter:
 
     def __init__(self):
-        self._interpreter = InteractiveInterpreter()
-        self._command_manager = CommandManager(self._interpreter)
+        self._context = Context()
+        self._interpreter = InteractiveInterpreter(self._context)
+        self._command_manager = CommandManager(weakref.ref(self))
 
     def read_and_execute(self, session: PromptSession, prompt: str, more_prompt: str):
         command = None
@@ -43,3 +46,15 @@ class Interpreter:
             source = "\n".join(lines)
 
         self._interpreter.runsource(source)
+
+    @property
+    def context(self):
+        return self._context
+
+    @property
+    def interpreter(self):
+        return self._interpreter
+
+    @property
+    def command_manager(self):
+        return self._command_manager

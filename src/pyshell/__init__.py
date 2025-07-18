@@ -1,7 +1,7 @@
 import os
 import sys
 
-from .pyshell.shell import InteractiveShell
+from pyshell.pyshell.shell import InteractiveShell
 
 
 def main() -> int:

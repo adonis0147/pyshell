@@ -7,8 +7,8 @@ from prompt_toolkit.styles.pygments import style_from_pygments_cls
 from pygments.lexers import PythonLexer
 from pygments.styles import get_style_by_name
 
-from . import bindings
-from .interpreter import Interpreter
+import pyshell.pyshell.key_bindings as key_bindings
+from pyshell.pyshell.interpreter import Interpreter
 
 
 class InteractiveShell:
@@ -29,7 +29,7 @@ class InteractiveShell:
             style=prompt_style,
             lexer=PygmentsLexer(PythonLexer),
             auto_suggest=AutoSuggestFromHistory(),
-            key_bindings=bindings,
+            key_bindings=key_bindings.bindings,
         )
         pass
 

@@ -1,5 +1,5 @@
-from .hello import Hello
+from .help import Help
 
 commands_meta: list = [
-    ["hello", Hello],
+    ["help", Help],
 ]

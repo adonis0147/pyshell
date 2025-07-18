@@ -1,4 +1,4 @@
-from .commands import commands_meta
+from pyshell.pyshell.commands import commands_meta
 
 
 class CommandManager:
@@ -7,13 +7,13 @@ class CommandManager:
         self._commands = {}
 
         for name, cls in commands_meta:
-            command = cls(name)
+            command = cls(name, interpreter)
             self._commands[name] = command
-            interpreter.locals[name] = command
+            interpreter().context[name] = command
 
     @property
     def commands(self):
         return self._commands
 
-    def get_command(self, name):
-        return self._commands.get(name, None)
+    def get_command(self, name, default=None):
+        return self._commands.get(name, default)
