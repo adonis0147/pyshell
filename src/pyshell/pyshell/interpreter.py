@@ -30,7 +30,12 @@ class Interpreter:
                 if command is not None:
                     start = index + 1
                     line = line[start:]
-                code = self._interpreter.compile(line)
+
+                try:
+                    code = self._interpreter.compile(line)
+                except Exception:
+                    self._interpreter.showtraceback()
+                    return
 
             lines.append(line)
             if code:

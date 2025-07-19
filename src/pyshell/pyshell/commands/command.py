@@ -1,8 +1,16 @@
 class Command:
 
-    def __init__(self, name: str, interpreter):
+    def __init__(self, name: str, interpreter, description: str):
         self._name = name
         self._interpreter = interpreter
+        self._description = description
+
+    @staticmethod
+    def help():
+        raise NotImplementedError
+
+    def __call__(self, *args, **kwargs):
+        raise NotImplementedError
 
     @property
     def name(self):
@@ -12,9 +20,6 @@ class Command:
     def interpreter(self):
         return self._interpreter()
 
-    @staticmethod
-    def help():
-        raise NotImplementedError
-
-    def __call__(self, *args, **kwargs):
-        raise NotImplementedError
+    @property
+    def description(self):
+        return self._description

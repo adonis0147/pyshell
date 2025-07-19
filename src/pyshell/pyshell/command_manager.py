@@ -6,8 +6,8 @@ class CommandManager:
     def __init__(self, interpreter):
         self._commands = {}
 
-        for name, cls in commands_meta:
-            command = cls(name, interpreter)
+        for name, cls, description in commands_meta:
+            command = cls(name, interpreter, description)
             self._commands[name] = command
             interpreter().context[name] = command
 

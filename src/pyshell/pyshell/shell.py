@@ -2,6 +2,7 @@ import os
 
 from prompt_toolkit import PromptSession
 from prompt_toolkit.auto_suggest import AutoSuggestFromHistory
+from prompt_toolkit.history import FileHistory
 from prompt_toolkit.lexers import PygmentsLexer
 from prompt_toolkit.styles.pygments import style_from_pygments_cls
 from pygments.lexers import PythonLexer
@@ -30,6 +31,7 @@ class InteractiveShell:
             lexer=PygmentsLexer(PythonLexer),
             auto_suggest=AutoSuggestFromHistory(),
             key_bindings=key_bindings.bindings,
+            history=FileHistory(".pyshell_history"),
         )
         pass
 
