@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 from prompt_toolkit import PromptSession
 from prompt_toolkit.auto_suggest import AutoSuggestFromHistory
@@ -31,7 +32,7 @@ class InteractiveShell:
             lexer=PygmentsLexer(PythonLexer),
             auto_suggest=AutoSuggestFromHistory(),
             key_bindings=key_bindings.bindings,
-            history=FileHistory(".pyshell_history"),
+            history=FileHistory(Path.home() / ".pyshell_history"),
         )
         pass
 
