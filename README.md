@@ -1,3 +1,3 @@
 # pyshell
 
-Describe your project here.
+A shell based on Python interpreter.
