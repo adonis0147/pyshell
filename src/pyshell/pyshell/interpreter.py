@@ -9,8 +9,8 @@ from pyshell.pyshell.context import Context
 
 class Interpreter:
 
-    def __init__(self):
-        self._context = Context()
+    def __init__(self, context: Context):
+        self._context = context
         self._interpreter = InteractiveInterpreter(self._context)
         self._command_manager = CommandManager(weakref.ref(self))
 

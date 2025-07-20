@@ -1,4 +1,6 @@
-from pyshell.pyshell.commands import commands_meta
+import inspect
+
+import pyshell.pyshell.commands as commands
 
 
 class CommandManager:
@@ -6,10 +8,11 @@ class CommandManager:
     def __init__(self, interpreter):
         self._commands = {}
 
-        for name, cls, description in commands_meta:
-            command = cls(name, interpreter, description)
-            self._commands[name] = command
-            interpreter().context[name] = command
+        for _, cls in inspect.getmembers(commands, inspect.isclass):
+            if issubclass(cls, commands.command.Command):
+                command = cls(interpreter)
+                self._commands[cls.name] = command
+                interpreter().context[cls.name] = command
 
     @property
     def commands(self):

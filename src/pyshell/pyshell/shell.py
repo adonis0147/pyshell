@@ -10,6 +10,7 @@ from pygments.lexers import PythonLexer
 from pygments.styles import get_style_by_name
 
 import pyshell.pyshell.key_bindings as key_bindings
+from pyshell.pyshell.context import Context
 from pyshell.pyshell.interpreter import Interpreter
 
 
@@ -36,10 +37,10 @@ class InteractiveShell:
         )
         pass
 
-    def run(self) -> int:
+    def run(self, context: Context) -> int:
         print(InteractiveShell.welcome)
 
-        interpreter = Interpreter()
+        interpreter = Interpreter(context)
         while True:
             try:
                 interpreter.read_and_execute(self.session, "pyshell> ", "       > ")
