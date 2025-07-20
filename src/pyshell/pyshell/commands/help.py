@@ -1,3 +1,5 @@
+from tabulate import tabulate
+
 from .command import Command
 
 
@@ -16,8 +18,9 @@ class Help(Command):
 Usage: help command
 
 
-Commands:
-"""
-            for name, command in self.interpreter.command_manager.commands.items():
-                usage += f"{name}           {command.description}\n"
+Commands:"""
             print(usage)
+            commands = []
+            for name, command in self.command_manager.commands.items():
+                commands.append([name, "", "", "", "", command.__class__.description])
+            print(tabulate(commands, headers=[], tablefmt="plain"))
