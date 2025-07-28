@@ -90,6 +90,12 @@ tabulate==0.9.0
     # via pyshell
 tomlkit==0.13.3
     # via pylint
+types-docutils==0.21.0.20250728
+    # via types-pygments
+types-pygments==2.19.0.20250715
+    # via pyshell
+types-tabulate==0.9.0.20241207
+    # via pyshell
 typing-extensions==4.14.1
     # via docstring-to-markdown
     # via mypy

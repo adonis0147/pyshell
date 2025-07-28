@@ -5,7 +5,7 @@ from .command import Command
 
 class Help(Command):
     name = "help"
-    description = "Show the usage of a command"
+    description = "Show the usage"
 
     def __call__(self, command=None):
         if not isinstance(command, Command):

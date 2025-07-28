@@ -1,6 +1,18 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, Optional
+from weakref import ReferenceType
+
+from pyshell.pyshell.context import Context
+
+if TYPE_CHECKING:
+    from pyshell.pyshell.command_manager import CommandManager
+    from pyshell.pyshell.interpreter import Interpreter
+
+
 class Command:
 
-    def __init__(self, interpreter):
+    def __init__(self, interpreter: ReferenceType[Interpreter]):
         self._interpreter = interpreter
 
     @staticmethod
@@ -11,13 +23,19 @@ class Command:
         raise NotImplementedError
 
     @property
-    def interpreter(self):
+    def name(self):
+        return self.__class__.name
+
+    @property
+    def interpreter(self) -> Optional[Interpreter]:
         return self._interpreter()
 
     @property
-    def command_manager(self):
+    def command_manager(self) -> CommandManager:
+        assert self.interpreter
         return self.interpreter.command_manager
 
     @property
-    def context(self):
+    def context(self) -> Context:
+        assert self.interpreter
         return self.interpreter.context
