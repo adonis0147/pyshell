@@ -13,14 +13,12 @@ A interactive shell powered by [prompt-toolkit](https://python-prompt-toolkit.re
 
 # Development
 
-1. Install [Rye](https://rye.astral.sh/).
+1. Install [uv](https://docs.astral.sh/uv/).
 
 ```shell
-curl -sSL https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
+curl -LsSf https://astral.sh/uv/install.sh | bash
 
-rye config --set-bool behavior.use-uv=true
-
-source "${HOME}/.rye/env"
+export PATH="${HOME}/.local/bin:${PATH}"
 ```
 
 2. Clone the project.
@@ -34,7 +32,7 @@ cd pyshell
 3. Set the environment up.
 
 ```shell
-rye sync
+uv sync
 ```
 
 4. Use the virtual environment.
